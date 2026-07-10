@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Food Ordering & Cuisine Demand Analytics - Tableau and Flask Integration for interactive restaurant decision-making.">
+    <title>{% block title %}Food Ordering & Cuisine Analytics{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Base Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Tableau Embedding API v3 -->
+    <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navbar -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <div class="brand-logo-scout">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="scout-icon">
+                        <polygon points="12 2 2 22 22 22"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">Scout</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}" id="nav-home">Overview</a>
+                <a href="{{ url_for('dashboard') }}" class="nav-link {% if active_page == 'dashboard' %}active{% endif %}" id="nav-dashboard">Dashboards</a>
+                <a href="{{ url_for('story') }}" class="nav-link {% if active_page == 'story' %}active{% endif %}" id="nav-story">Insights Story</a>
+                <a href="https://drive.google.com/file/d/1_u-xBQ5ZkQzHVPibzfeX_Hc2s2qNVZyF/view?usp=drive_link" class="nav-link" id="nav-demo" target="_blank" rel="noopener noreferrer">Demo</a>
+                <a href="{{ url_for('about') }}" class="nav-link {% if active_page == 'about' %}active{% endif %}" id="nav-about">User Guide</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-theme-toggle-scout" aria-label="Toggle Theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <a href="{{ url_for('dashboard') }}" class="btn-scout-cta">Get Started</a>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2026 Gastronomy Analytics Platform. Designed for restaurant business intelligence.</p>
+                <div class="footer-links">
+                    <a href="https://public.tableau.com" target="_blank" rel="noopener noreferrer">Powered by Tableau Public</a>
+                    <span class="footer-divider">|</span>
+                    <a href="{{ url_for('about') }}">Documentation</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client-side Logic Script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

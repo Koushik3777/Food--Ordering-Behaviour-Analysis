@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}Combined Visuals - Gastronomy Analytics Platform{% endblock %}
+
+{% block content %}
+<div class="viz-page-container">
+    <div class="viz-header-card glass-panel">
+        <div class="viz-header-main">
+            <h1 class="viz-title">Dashboard & Story — Combined View</h1>
+            <p class="viz-desc">View the interactive dashboard and the story side-by-side for quick comparison and narrative context.</p>
+        </div>
+    </div>
+
+    <div class="viz-frame-wrapper glass-panel">
+        <tableau-viz 
+            id="tableau-viz-dashboard" 
+            src="https://public.tableau.com/views/foodorderingdashboard/Dashboard1"
+            device="desktop"
+            toolbar="bottom"
+            hide-tabs
+            class="tableau-iframe-container">
+        </tableau-viz>
+    </div>
+
+    <div class="viz-frame-wrapper glass-panel" style="margin-top:24px;">
+        <tableau-viz 
+            id="tableau-viz-story" 
+            src="https://public.tableau.com/views/foodorderingstory/Story1"
+            device="desktop"
+            toolbar="bottom"
+            hide-tabs
+            class="tableau-iframe-container">
+        </tableau-viz>
+    </div>
+</div>
+{% endblock %}

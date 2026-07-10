@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}Interactive Dashboard - Gastronomy Analytics Platform{% endblock %}
+
+{% block content %}
+<div class="viz-page-container">
+    <!-- Header Block -->
+    <div class="viz-header-card glass-panel">
+        <div class="viz-header-main">
+            <h1 class="viz-title">Food Ordering Executive Dashboard</h1>
+            <p class="viz-desc">Analyze overall demand, average rating patterns, order distribution across different weekdays, and delivery durations. Filter by restaurant name and specific cuisine types.</p>
+        </div>
+        <div class="viz-actions-bar">
+            <button class="btn btn-icon" id="btn-refresh" title="Reset View">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                </svg>
+                <span>Reset</span>
+            </button>
+            <button class="btn btn-icon" id="btn-fullscreen" title="Fullscreen Mode">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+                <span>Fullscreen</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Visualizer Wrapper -->
+    <div class="viz-frame-wrapper glass-panel">
+        <!-- Loader Skeleton -->
+        <div class="viz-loader-skeleton" id="viz-loader">
+            <div class="pulse-ring"></div>
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Loading interactive dashboard from Tableau Public...</p>
+        </div>
+
+        <!-- Tableau Web Component -->
+        <tableau-viz 
+            id="tableau-viz-dashboard" 
+            src="https://public.tableau.com/views/foodorderingdashboard/Dashboard1"
+            device="desktop"
+            toolbar="bottom"
+            hide-tabs
+            class="tableau-iframe-container">
+        </tableau-viz>
+    </div>
+</div>
+{% endblock %}
